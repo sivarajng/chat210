@@ -15,8 +15,8 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-      <a class="navbar-brand" href="#">Chat 210</a>
-    </div>
+      <a class="navbar-brand" href="#">Chat 210 : {{user}}</a>
+     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -41,7 +41,10 @@
         <div class="text-center">
          
          <ul class="list-group ">
-           <li class="list-group-item list-group-item-info text-left" ng-repeat="msg in msgs">{{msg.message}}</li>
+           <li class="list-group-item list-group-item-info text-left" ng-repeat="msg in msgs">
+              <p><b>{{msg.user}}</b> : <i>{{msg.time | date:'hh:mm:ss a dd-MM-yyyy'}}</i></p>
+              <p>{{msg.message}}</p>
+             </li>
           
          </ul>
          
@@ -54,10 +57,21 @@
 
 
     <form role="form">
-      <div class="form-group">
+      <div class="form-group" ng-show="user">
         <div class="input-group">
           <input ng-model="chatMessage" type="text" class="form-control" id="" placeholder="type message">
           <span class="input-group-btn"> <button ng-click="sendMessage()" type="submit" class="btn btn-primary form-control">Send</button></span>
+          
+        </div>
+      </div>
+            <div class="form-group" ng-show="!user">
+        <div class="btn-group-justified">
+          <div class="btn-group">
+          <button ng-click="setUser('priya')" class="btn btn-success">I am Priya</button>
+</div>
+          <div class="btn-group">
+          <button ng-click="setUser('siva')" class="btn btn-danger">I am Siva</button>
+        </div>  
         </div>
       </div>
     </form>
