@@ -28,11 +28,13 @@ socket.on('connection', function (client) {
   client.on('sendMessage', function (msg) {
     console.log('socket server received sendMessage : ' + JSON.stringify(msg));
     client.emit('getMessage', msg);
+    socket.sockets.connected[users[msg.toUser]].emit('getMessage', msg);
+ 
   });
 
   client.on('setUser', function (user) {
     console.log('socket server received User : ' + JSON.stringify(user));
-    user[user]=client.id;
+    users[user]=client.id;
   });
 
 
